@@ -1,0 +1,36 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+.venv/
+*.env
+.env
+
+# === ML artifacts & datasets (use Git LFS or cloud storage instead) ===
+*.pth
+*.pkl
+*.xpt
+*.XPT
+mode1-spirometer/ml-pipeline/data/raw/*
+!mode1-spirometer/ml-pipeline/data/raw/.gitkeep
+mode1-spirometer/ml-pipeline/artifacts/*
+!mode1-spirometer/ml-pipeline/artifacts/.gitkeep
+
+# === Node / React ===
+node_modules/
+dist/
+build/
+.vite/
+
+# === PlatformIO / ESP32 ===
+.pio/
+.vscode/
+
+# === OS / Editor ===
+.DS_Store
+Thumbs.db
+.idea/
+
+# === Logs ===
+*.log

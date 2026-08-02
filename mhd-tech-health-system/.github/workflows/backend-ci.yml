@@ -1,0 +1,34 @@
+name: Backend CI
+
+on:
+  push:
+    paths:
+      - "mode1-spirometer/backend/**"
+  pull_request:
+    paths:
+      - "mode1-spirometer/backend/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mode1-spirometer/backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Lint (basic syntax check)
+        run: python -m py_compile app/main.py
+
+      # NOTE: enable this once mhd_spirometry_model.pth / mhd_scaler.pkl are
+      # available in CI (e.g. pulled from S3/artifact storage) — tests will
+      # fail without them since model_loader.load() needs real files.
+      # - name: Run tests
+      #   run: pytest tests/

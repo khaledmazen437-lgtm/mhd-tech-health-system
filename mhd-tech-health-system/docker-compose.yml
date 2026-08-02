@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./mode1-spirometer/backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - MHD_ALLOWED_ORIGINS=http://localhost:5173
+      - MHD_MODEL_PATH=/app/artifacts/mhd_spirometry_model.pth
+      - MHD_SCALER_PATH=/app/artifacts/mhd_scaler.pkl
+    volumes:
+      - ./mode1-spirometer/ml-pipeline/artifacts:/app/artifacts:ro
+
+  # Uncomment once you want the frontend containerized too (fine to run
+  # `npm run dev` locally for now during active development).
+  # frontend:
+  #   build:
+  #     context: ./mode1-spirometer/frontend
+  #   ports:
+  #     - "5173:5173"
+  #   environment:
+  #     - VITE_BACKEND_URL=http://localhost:8000
+  #   depends_on:
+  #     - backend
