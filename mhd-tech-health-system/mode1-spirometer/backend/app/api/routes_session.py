@@ -5,7 +5,6 @@ from app.core.session_store import create_session, get_session
 
 router = APIRouter(prefix="/session", tags=["session"])
 
-
 @router.post("/start")
 def start_session(demographics: PatientInput):
     """
@@ -15,7 +14,6 @@ def start_session(demographics: PatientInput):
     """
     session_id = create_session(demographics)
     return {"session_id": session_id}
-
 
 @router.get("/{session_id}")
 def poll_session(session_id: str):

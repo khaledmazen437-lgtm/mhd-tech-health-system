@@ -5,7 +5,6 @@ from app.services.inference_service import run_inference
 
 router = APIRouter(prefix="/predict", tags=["inference"])
 
-
 @router.post("", response_model=PredictionOutput)
 def predict(patient: PatientInput):
     try:

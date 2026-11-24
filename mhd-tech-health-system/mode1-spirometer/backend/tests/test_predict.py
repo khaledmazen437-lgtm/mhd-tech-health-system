@@ -10,11 +10,9 @@ from app.main import app
 
 client = TestClient(app)
 
-
 def test_health():
     response = client.get("/health")
     assert response.status_code == 200
-
 
 def test_predict_valid_input():
     payload = {
@@ -32,11 +30,10 @@ def test_predict_valid_input():
     assert body["diagnosis"] in (0, 1)
     assert 0.0 <= body["confidence"] <= 1.0
 
-
 def test_predict_rejects_invalid_age():
     payload = {
         "gender": 1,
-        "age_years": -5,  # invalid
+        "age_years": -5,
         "height_cm": 175,
         "weight_kg": 80,
         "fvc": 3800,

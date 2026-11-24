@@ -8,7 +8,6 @@ package both sides import from.
 
 import torch.nn as nn
 
-
 class COPDClassifier(nn.Module):
     def __init__(self, input_size: int = 7):
         super().__init__()
