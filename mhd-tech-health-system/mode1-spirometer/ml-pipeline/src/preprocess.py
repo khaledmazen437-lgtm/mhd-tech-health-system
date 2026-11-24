@@ -13,17 +13,16 @@ RAW_DIR = Path(__file__).resolve().parent.parent / "data" / "raw"
 OUT_DIR = Path(__file__).resolve().parent.parent / "data" / "processed"
 
 FEATURE_COLUMNS = [
-    "RIAGENDR",  # Gender
-    "RIDAGEYR",  # Age
-    "BMXHT",     # Height
-    "BMXWT",     # Weight
-    "SPXNFVC",   # FVC
-    "SPXNFEV1",  # FEV1
-    "SPXNPEF",   # PEF
+    "RIAGENDR",
+    "RIDAGEYR",
+    "BMXHT",
+    "BMXWT",
+    "SPXNFVC",
+    "SPXNFEV1",
+    "SPXNPEF",
 ]
 
 COPD_RATIO_THRESHOLD = 0.70
-
 
 def load_xpt(filename: str) -> pd.DataFrame:
     path = RAW_DIR / filename
@@ -33,7 +32,6 @@ def load_xpt(filename: str) -> pd.DataFrame:
             f"{RAW_DIR} before running this script."
         )
     return pd.read_sas(path, format="xport")
-
 
 def build_dataset() -> pd.DataFrame:
     spx = load_xpt("SPX_G.XPT")
@@ -50,7 +48,6 @@ def build_dataset() -> pd.DataFrame:
 
     return df
 
-
 def main():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     df = build_dataset()
@@ -58,7 +55,6 @@ def main():
     df.to_csv(out_path, index=False)
     print(f"Wrote {len(df)} rows to {out_path}")
     print(f"Class balance:\n{df['Diagnosis'].value_counts(normalize=True)}")
-
 
 if __name__ == "__main__":
     main()

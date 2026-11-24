@@ -11,7 +11,6 @@ import torch
 from app.core.config import MODEL_PATH, SCALER_PATH
 from app.core.model_def import COPDClassifier
 
-
 class ModelBundle:
     def __init__(self):
         self.model: COPDClassifier | None = None
@@ -38,7 +37,6 @@ class ModelBundle:
             tensor_input = torch.tensor(scaled, dtype=torch.float32)
             output = self.model(tensor_input)
             return float(output.item())
-
 
 # Singleton instance imported across the app
 model_bundle = ModelBundle()

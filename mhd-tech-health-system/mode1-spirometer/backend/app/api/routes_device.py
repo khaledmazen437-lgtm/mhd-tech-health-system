@@ -5,7 +5,6 @@ from app.core.session_store import attach_reading
 
 router = APIRouter(prefix="/device", tags=["device"])
 
-
 @router.post("/reading")
 def submit_reading(reading: DeviceReading):
     """

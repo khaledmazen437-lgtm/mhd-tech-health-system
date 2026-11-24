@@ -2,7 +2,6 @@ from app.core.model_loader import model_bundle
 from app.core.config import COPD_THRESHOLD
 from app.schemas.patient import PatientInput, PredictionOutput
 
-
 def run_inference(patient: PatientInput) -> PredictionOutput:
     # Feature order MUST match training order exactly.
     features = [

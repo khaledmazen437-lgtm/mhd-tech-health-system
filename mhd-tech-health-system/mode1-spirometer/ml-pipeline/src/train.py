@@ -26,7 +26,6 @@ TARGET = "Diagnosis"
 EPOCHS = 100
 LEARNING_RATE = 0.001
 
-
 def main():
     ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -76,7 +75,6 @@ def main():
         pickle.dump(scaler, f)
 
     print(f"Saved model + scaler to {ARTIFACTS_DIR}")
-
 
 if __name__ == "__main__":
     main()

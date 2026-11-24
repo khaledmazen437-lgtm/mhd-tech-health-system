@@ -8,7 +8,6 @@ Feature order MUST match the order used when training the scaler + model:
 from pydantic import BaseModel, Field
 from typing import Optional
 
-
 class PatientInput(BaseModel):
     gender: int = Field(
         ..., ge=1, le=2, description="1 = Male, 2 = Female (matches NHANES RIAGENDR coding)"
@@ -33,13 +32,11 @@ class PatientInput(BaseModel):
             }
         }
 
-
 class PredictionOutput(BaseModel):
     diagnosis: int = Field(..., description="0 = Normal, 1 = COPD")
     diagnosis_label: str
     confidence: float = Field(..., description="Model sigmoid output probability of COPD")
     fev1_fvc_ratio: float = Field(..., description="Computed FEV1/FVC ratio, for reference/audit")
-
 
 class DeviceReading(BaseModel):
     """Payload the ESP32 posts once a spirometry test completes."""
